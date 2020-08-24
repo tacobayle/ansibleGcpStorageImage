@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+
+    - name: Upload the Avi image file in the bucket
+      gcp_storage_object:
+        action: upload
+        bucket: "{{ bucketAvi }}"
+        src: gcp_controller.tar.gz
+        dest: gcp_controller.tar.gz
+        auth_kind: machineaccount
+        state: present
+        service_account_email: "{{ googleEmail }}"
+        overwrite: yes
+        # don't remove the overwrite: yes as it is somehow (bug) required
+      register: storageOutput
+
+    - name: Debug
+      debug:
+        msg: "{{ storageOutput.selfLink }}"
+      tags:
+        - debug

@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+
+    - name: Create GCP Image
+      gcp_compute_image:
+        name: avi-controller-image
+        auth_kind: machineaccount
+        service_account_email: "{{ googleEmail }}"
+        project: "{{ googleProject }}"
+        raw_disk:
+          source: "{{ storageOutput.selfLink }}"
+      register: imageOutput
+
+    - name: Debug
+      debug:
+        msg: "{{ imageOutput }}"
+      tags:
+        - debug
