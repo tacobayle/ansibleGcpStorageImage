@@ -14,7 +14,7 @@
         auth_kind: machineaccount
         state: present
         service_account_email: "{{ googleEmail }}"
-        overwrite: yes
+        #overwrite: yes
         # don't remove the overwrite: yes as it is somehow (bug) required
       register: storageOutput
 
