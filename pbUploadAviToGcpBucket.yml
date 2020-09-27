@@ -11,10 +11,11 @@
         bucket: "{{ bucketAvi }}"
         src: gcp_controller.tar.gz
         dest: gcp_controller.tar.gz
+        project: "{{ googleProject }}"
         auth_kind: machineaccount
         state: present
         service_account_email: "{{ googleEmail }}"
-        overwrite: yes
+        # overwrite: yes
         # don't remove the overwrite: yes as it is somehow (bug) required
       register: storageOutput
 
