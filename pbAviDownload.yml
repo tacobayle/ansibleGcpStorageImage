@@ -5,12 +5,19 @@
 
   tasks:
 
-    - name: Download the Avi software
-      shell: |
-        curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id={{ googleDriveId }}" > /dev/null ; curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id={{ googleDriveId }}" -o gcp_controller.tar.gz
-      when: googleDriveId is defined
-      tags:
-        - drive
+      - name: Download the Avi software using gdown
+        shell: |
+          gdown "https://drive.google.com/uc?id={{ googleDriveId }}" --output gcp_controller.tar.gz
+        when: googleDriveId is defined
+        tags:
+          - drive
+
+#    - name: Download the Avi software using curl
+#      shell: |
+#        curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id={{ googleDriveId }}" > /dev/null ; curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id={{ googleDriveId }}" -o gcp_controller.tar.gz
+#      when: googleDriveId is defined
+#      tags:
+#        - drive
 
     # - name: Unzip the archive
     #   unarchive:
