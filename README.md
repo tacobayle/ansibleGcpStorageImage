@@ -4,7 +4,8 @@
 Prepare GCP before deploying Avi controller
 
 ## Prerequisites:
-1. Make sure Ansible in the orchestrator VM
+- Ansible in the orchestrator VM
+- gdown in the orchestrator VM (pip install gdown)
 
 ## Environment:
 
