@@ -6,13 +6,9 @@
   tasks:
 
     - name: Remove the Avi image file in the bucket
-      gcp_storage_object:
-        action: upload
+      google.cloud.gcp_storage_object:
+        action: delete
         bucket: "{{ bucketAvi }}"
-        src: gcp_controller.tar.gz
-        dest: gcp_controller.tar.gz
         auth_kind: machineaccount
         state: absent
         service_account_email: "{{ googleEmail }}"
-        overwrite: yes
-        # it does not seem to work

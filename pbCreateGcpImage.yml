@@ -6,7 +6,7 @@
   tasks:
 
     - name: Create GCP Image
-      gcp_compute_image:
+      google.cloud.gcp_compute_image:
         name: avi-controller-image
         auth_kind: machineaccount
         service_account_email: "{{ googleEmail }}"

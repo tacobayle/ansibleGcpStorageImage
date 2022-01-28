@@ -6,7 +6,7 @@
   tasks:
 
     - name: Upload the Avi image file in the bucket
-      gcp_storage_object:
+      google.cloud.gcp_storage_object:
         action: upload
         bucket: "{{ bucketAvi }}"
         src: gcp_controller.tar.gz
